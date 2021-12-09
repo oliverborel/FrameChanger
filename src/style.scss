@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #007af3;
+    --actor1-color: #000000;
+    --actor2-color: #007af3;
+    --actor3-color: #8f1414;
+    --actor4-color: #318f14;
+    --menus-color: #444444
+}
+
+body {
+    background: #f2f2f2;
+    margin: 0;
+    font-family: 'Roboto';
+}
+
+.mainwindow 
+{
+    padding: 0;
+}
+canvas { 
+    position: fixed;
+    width: 100%; 
+    height: 80%; 
+    display: block;
+    background: #f2f2f2; 
+    background-color: #f2f2f2;
+}
+
+.navbar {
+    //display: flex;
+    li {
+        a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: .5em;
+            font-size: 1.3em;
+            text-align: right;
+        
+            &:hover {
+                font-weight: bold;
+            }
+        }
+    }
+    
+    background: var(--menus-color);
+    padding: 1em;
+
+    .logo {
+        text-decoration: none;
+        font-weight: bold;
+        color: black;
+        font-size: 1.2em;
+
+        span {
+            color: var(--primary-color);
+        }
+    }
+
+    inputmenu {
+        display: none;
+    }
+
+    calculatemenu {
+        display: none;
+    }
+    
+    .container {
+        display: flex;
+        place-content: space-between;
+    }
+
+    .inputmenu-open {
+        cursor: pointer;
+    }
+
+    .calculatemenu-open {
+        cursor: pointer;
+    }
+
+}
+
+a {
+    color: var(--menus-color);
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+inputmenu.menu-btn {
+    display: block;
+}
+
+inputmenu {
+    position: fixed;
+    z-index: 999;
+    width: 15%;
+    right: 0;
+    top: 0;
+    background: var(--menus-color);
+    height: 100vh;
+    padding: 1em;
+    
+    .input {
+    padding: 0;
+
+    .actor {
+        width: 20%;
+        // border: 1px solid black;
+        margin: 1em;
+        padding: 1em;
+        display: block;
+        
+        .actor1Name {
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--actor1-color);
+            font-size: 0.8em;
+            position: relative;
+            top: -8px;
+            padding: none;
+        }
+        .actor2Name {
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--actor2-color);
+            font-size: 0.8em;
+            position: relative;
+            top: -8px;
+            padding: none;
+        }
+        .actor3Name {
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--actor3-color);
+            font-size: 0.8em;
+            position: relative;
+            top: -8px;
+            padding: none;
+        }
+        .actor4Name {
+            text-decoration: none;
+            font-weight: bold;
+            color: var(--actor4-color);
+            font-size: 0.8em;
+            position: relative;
+            top: -8px;
+            padding: none;
+        }
+
+    }
+}
+
+}
+
+.inputmenu-exit {
+    float: right;
+    margin: .5em;
+    cursor: pointer;
+}
+
+calculatemenu.menu-btn {
+    display: block;
+}
+
+calculatemenu {
+    position: fixed;
+    z-index: 999;
+    width: 15%;
+    right: 0;
+    top: 0;
+    background: var(--menus-color);
+    height: 100vh;
+    padding: 1em;
+}
+
+.calculatemenu-exit {
+    float: right;
+    margin: .5em;
+    cursor: pointer;
+}
+
+output {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+
+}
