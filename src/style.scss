@@ -28,8 +28,30 @@ canvas {
     background-color: #f2f2f2;
 }
 
+.logo {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    z-index: 999;
+    transform: translate(-50%, 0);
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 2em;
+    text-align: center;
+    padding-top: 0.25em;
+
+    span {
+        color: var(--primary-color);
+    }
+}
+
 .navbar {
-    //display: flex;
+    height: 5%;
+    width: 15%;
+    z-index: 999;
+    position: fixed;
+    right: 0;
     li {
         a {
             color: white;
@@ -46,18 +68,7 @@ canvas {
     }
     
     background: var(--menus-color);
-    padding: 1em;
 
-    .logo {
-        text-decoration: none;
-        font-weight: bold;
-        color: black;
-        font-size: 1.2em;
-
-        span {
-            color: var(--primary-color);
-        }
-    }
 
     inputmenu {
         display: none;
@@ -102,13 +113,15 @@ inputmenu {
     z-index: 999;
     width: 15%;
     right: 0;
-    top: 0;
+    top: 5%;
     background: var(--menus-color);
-    height: 100vh;
-    padding: 1em;
+    height: 85%;
+    //padding: 1em;
     
     .input {
-    padding: 0;
+
+    //top: 10em;
+    padding-top: 1em;
 
     .actor {
         width: 20%;
@@ -171,13 +184,46 @@ calculatemenu.menu-btn {
 
 calculatemenu {
     position: fixed;
-    z-index: 999;
+    z-index: 900;
     width: 15%;
     right: 0;
-    top: 0;
+    top: 5%;
     background: var(--menus-color);
-    height: 100vh;
-    padding: 1em;
+    height: 85%;
+    padding-top: 1em;
+    text-align: center;
+    .selectObjectTypeMenu {
+        padding-top: 1em;
+        padding-bottom: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: start;
+    }
+    .inputObjectTypeMenu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .selectMenu {
+        padding-top: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: start;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        padding: .5em;
+        font-size: 1.3em;
+        text-align: center;
+    
+        &:hover {
+            font-weight: bold;
+        }
+    }
 }
 
 .calculatemenu-exit {
