@@ -3,8 +3,8 @@
   --primary-color: #007af3;
   --actor1-color: #000000;
   --actor2-color: #007af3;
-  --actor3-color: #8f1414;
-  --actor4-color: #318f14;
+  --actor3-color: #8f8d14;
+  --actor4-color: #8f148f;
   --menus-color: #444444
 ;
 }
@@ -26,6 +26,27 @@ canvas {
   display: block;
   background: #f2f2f2;
   background-color: #f2f2f2;
+}
+
+.axisCoulourScheme {
+  position: fixed;
+  top: 5.5%;
+  left: 8.5%;
+  z-index: 999;
+  color: black;
+  font-size: 0.8em;
+}
+
+.axisCoulourScheme .redAxis {
+  color: #7F2020;
+}
+
+.axisCoulourScheme .greenAxis {
+  color: #207F20;
+}
+
+.axisCoulourScheme .blueAxis {
+  color: #20207F;
 }
 
 .logo {
@@ -120,14 +141,13 @@ inputmenu .input {
   padding-top: 1em;
 }
 
-inputmenu .input .actor {
-  width: 20%;
+inputmenu .input .actor1, inputmenu .input .actor2, inputmenu .input .actor3, inputmenu .input .actor4 {
   margin: 1em;
   padding: 1em;
   display: block;
 }
 
-inputmenu .input .actor .actor1Name {
+inputmenu .input .actor1 .actor1Name, inputmenu .input .actor2 .actor1Name, inputmenu .input .actor3 .actor1Name, inputmenu .input .actor4 .actor1Name {
   text-decoration: none;
   font-weight: bold;
   color: var(--actor1-color);
@@ -137,7 +157,7 @@ inputmenu .input .actor .actor1Name {
   padding: none;
 }
 
-inputmenu .input .actor .actor2Name {
+inputmenu .input .actor1 .actor2Name, inputmenu .input .actor2 .actor2Name, inputmenu .input .actor3 .actor2Name, inputmenu .input .actor4 .actor2Name {
   text-decoration: none;
   font-weight: bold;
   color: var(--actor2-color);
@@ -147,7 +167,7 @@ inputmenu .input .actor .actor2Name {
   padding: none;
 }
 
-inputmenu .input .actor .actor3Name {
+inputmenu .input .actor1 .actor3Name, inputmenu .input .actor2 .actor3Name, inputmenu .input .actor3 .actor3Name, inputmenu .input .actor4 .actor3Name {
   text-decoration: none;
   font-weight: bold;
   color: var(--actor3-color);
@@ -157,7 +177,7 @@ inputmenu .input .actor .actor3Name {
   padding: none;
 }
 
-inputmenu .input .actor .actor4Name {
+inputmenu .input .actor1 .actor4Name, inputmenu .input .actor2 .actor4Name, inputmenu .input .actor3 .actor4Name, inputmenu .input .actor4 .actor4Name {
   text-decoration: none;
   font-weight: bold;
   color: var(--actor4-color);
@@ -165,6 +185,10 @@ inputmenu .input .actor .actor4Name {
   position: relative;
   top: -8px;
   padding: none;
+}
+
+inputmenu .input .actor3, inputmenu .input .actor4 {
+  display: none;
 }
 
 .inputmenu-exit {

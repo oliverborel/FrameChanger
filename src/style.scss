@@ -4,8 +4,8 @@
     --primary-color: #007af3;
     --actor1-color: #000000;
     --actor2-color: #007af3;
-    --actor3-color: #8f1414;
-    --actor4-color: #318f14;
+    --actor3-color: #8f8d14;
+    --actor4-color: #8f148f;
     --menus-color: #444444
 }
 
@@ -26,6 +26,24 @@ canvas {
     display: block;
     background: #f2f2f2; 
     background-color: #f2f2f2;
+}
+
+.axisCoulourScheme {
+    position: fixed;
+    top: 5.5%;
+    left: 8.5%;
+    z-index: 999;
+    color: black;
+    font-size: 0.8em;
+    .redAxis {
+        color: #7F2020;
+    }
+    .greenAxis {
+        color: #207F20;
+    }
+    .blueAxis {
+        color: #20207F;
+    }
 }
 
 .logo {
@@ -103,7 +121,6 @@ ul {
     padding: 0;
 }
 
-
 inputmenu.menu-btn {
     display: block;
 }
@@ -123,9 +140,7 @@ inputmenu {
     //top: 10em;
     padding-top: 1em;
 
-    .actor {
-        width: 20%;
-        // border: 1px solid black;
+    .actor1, .actor2, .actor3, .actor4 {
         margin: 1em;
         padding: 1em;
         display: block;
@@ -167,6 +182,10 @@ inputmenu {
             padding: none;
         }
 
+    }
+
+    .actor3, .actor4 {
+        display: none;
     }
 }
 

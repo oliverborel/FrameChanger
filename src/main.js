@@ -57,7 +57,7 @@ axisRenderer.setClearColor(0x000000, 0);
 axisRenderer.setSize(CANVAS_WIDTH, CANVAS_HEIGHT);
 
 var axisCanvas = document.body.appendChild(axisRenderer.domElement);
-axisCanvas.setAttribute('id', 'axisCanvas');
+axisCanvas.setAttribute('axisCanvasID', 'axisCanvas');
 axisCanvas.style.width = CANVAS_WIDTH;
 axisCanvas.style.height = CANVAS_HEIGHT;
 axisCanvas.style.background = "rgba(0, 0, 0, 0)";
@@ -126,7 +126,6 @@ function render() {
     render();
 })();
 
-
 // ---------------------------- Three JS actors
 const numActors = 4;
 const actors = [];
@@ -136,6 +135,93 @@ for (var i = 0; i < numActors; i++) {
     actorNames[i] = "Actor" + (i + 1);
     scene.add(actors[i]);
 }
+//On start actor 3 and 4 hidden
+actors[2].visible = false;
+actors[3].visible = false;
+document.getElementById('sel13').style.display = 'none';
+document.getElementById('sel13Name').style.display = 'none';
+document.getElementById('sel23').style.display = 'none';
+document.getElementById('sel23Name').style.display = 'none';
+document.getElementById('sel14').style.display = 'none';
+document.getElementById('sel14Name').style.display = 'none';
+document.getElementById('sel24').style.display = 'none';
+document.getElementById('sel24Name').style.display = 'none';
+var numActorsVisible = 2;
+
+// Show or hide them based on checkbox
+const actor1HideBtn = document.getElementById("actor1Hide");
+const actor2HideBtn = document.getElementById("actor2Hide");
+const actor3HideBtn = document.getElementById("actor3Hide");
+const actor4HideBtn = document.getElementById("actor4Hide");
+actor1HideBtn.checked = false;
+actor2HideBtn.checked = false;
+actor3HideBtn.checked = false;
+actor4HideBtn.checked = false;
+
+actor1HideBtn.addEventListener('input', () => {
+    if (actor1HideBtn.checked) {
+        actors[0].visible = false;
+        document.getElementById('sel11').style.display = 'none';
+        document.getElementById('sel11Name').style.display = 'none';
+        document.getElementById('sel21').style.display = 'none';
+        document.getElementById('sel21Name').style.display = 'none';
+    }
+    else {
+        actors[0].visible = true;
+        document.getElementById('sel11').style.display = '';
+        document.getElementById('sel11Name').style.display = '';
+        document.getElementById('sel21').style.display = '';
+        document.getElementById('sel21Name').style.display = '';
+    }
+})
+actor2HideBtn.addEventListener('input', () => {
+    if (actor2HideBtn.checked) {
+        actors[1].visible = false;
+        document.getElementById('sel12').style.display = 'none';
+        document.getElementById('sel12Name').style.display = 'none';
+        document.getElementById('sel22').style.display = 'none';
+        document.getElementById('sel22Name').style.display = 'none';
+    }
+    else {
+        actors[1].visible = true;
+        document.getElementById('sel12').style.display = '';
+        document.getElementById('sel12Name').style.display = '';
+        document.getElementById('sel22').style.display = '';
+        document.getElementById('sel22Name').style.display = '';
+    }
+})
+actor3HideBtn.addEventListener('input', () => {
+    if (actor3HideBtn.checked) {
+        actors[2].visible = false;
+        document.getElementById('sel13').style.display = 'none';
+        document.getElementById('sel13Name').style.display = 'none';
+        document.getElementById('sel23').style.display = 'none';
+        document.getElementById('sel23Name').style.display = 'none';
+    }
+    else {
+        actors[2].visible = true;
+        document.getElementById('sel13').style.display = '';
+        document.getElementById('sel13Name').style.display = '';
+        document.getElementById('sel23').style.display = '';
+        document.getElementById('sel23Name').style.display = '';
+    }
+})
+actor4HideBtn.addEventListener('input', () => {
+    if (actor4HideBtn.checked) {
+        actors[3].visible = false;
+        document.getElementById('sel14').style.display = 'none';
+        document.getElementById('sel14Name').style.display = 'none';
+        document.getElementById('sel24').style.display = 'none';
+        document.getElementById('sel24Name').style.display = 'none';
+    }
+    else {
+        actors[3].visible = true;
+        document.getElementById('sel14').style.display = '';
+        document.getElementById('sel14Name').style.display = '';
+        document.getElementById('sel24').style.display = '';
+        document.getElementById('sel24Name').style.display = '';
+    }
+})
 
 
 // ---------------------- Set actors from form data
@@ -178,8 +264,13 @@ document.actor4form.addEventListener('input', () => {
     setActor(actors[3], new FormData(document.actor4form));
 });
 
+setActor(actors[0], new FormData(document.actor1form));
+setActor(actors[1], new FormData(document.actor2form));
+setActor(actors[2], new FormData(document.actor3form));
+setActor(actors[3], new FormData(document.actor4form));
+
 // below broken for some reason
-// for (var i = 0; i < numActors; i++) {
+// for (var i = 0; i < numActorsVisible; i++) {
 //     //document.getElementsByName('output')[0].value = document.getElementsByName('actor1form')[0];
 //     document.getElementsByName("actor" + (i + 1) + "form")[0].addEventListener('change', () => {
 //         const formData = new FormData(document.getElementsByName("actor" + (i + 1) + "form")[0]);
@@ -192,6 +283,85 @@ document.actor4form.addEventListener('input', () => {
 //     })
 // }
 
+// ---------------------------- Delete / add actors in input menu
+const deleteActorBtn = document.getElementById('actorDel')
+deleteActorBtn.style.display = "none";
+const addActorBtn = document.getElementById('actorAdd')
+
+// Delete last actor
+deleteActorBtn.addEventListener('click', () => {
+    // minimum 2 actors visible
+    if (numActorsVisible > 2) {
+        // get current number of actors
+        switch (numActorsVisible) {
+            case 4:
+                // make actor buttons and actor invisible
+                document.getElementById('sel14').style.display = 'none';
+                document.getElementById('sel14Name').style.display = 'none';
+                document.getElementById('sel24').style.display = 'none';
+                document.getElementById('sel24Name').style.display = 'none';
+                actors[3].visible = false;
+                //remove the form
+                document.querySelector('.actor4').style.display = "none";
+                break;
+            case 3:
+                // make actor buttons and actor invisible
+                document.getElementById('sel13').style.display = 'none';
+                document.getElementById('sel13Name').style.display = 'none';
+                document.getElementById('sel23').style.display = 'none';
+                document.getElementById('sel23Name').style.display = 'none';
+                actors[2].visible = false;
+                //remove the form
+                document.querySelector('.actor3').style.display = "none";
+                //Hide this button: cant del more if we deleted 3rd
+                document.getElementById('actorDel').style.display = "none";
+                break;
+        }
+        numActorsVisible -= 1;
+    }
+
+    document.getElementById('actorAdd').style.display = "block"; // add must be visible if we just deleted one
+})
+
+// Add new actor
+addActorBtn.addEventListener('click', () => {
+
+    // maximum 4 actors
+    if (numActorsVisible < 4) {
+        // get current number of actors
+        switch (numActorsVisible) {
+            case 2:
+                // set the actor and actor buttons to visible
+                document.getElementById('sel13').style.display = '';
+                document.getElementById('sel13Name').style.display = '';
+                document.getElementById('sel23').style.display = '';
+                document.getElementById('sel23Name').style.display = '';
+                actor3HideBtn.checked = false;
+                actors[2].visible = true;
+                // add the form
+                document.querySelector('.actor3').style.display = "block";
+                break;
+            case 3:
+                // set the actor and actor buttons to visible
+                document.getElementById('sel14').style.display = '';
+                document.getElementById('sel14Name').style.display = '';
+                document.getElementById('sel24').style.display = '';
+                document.getElementById('sel24Name').style.display = '';
+                actor4HideBtn.checked = false;
+                actors[3].visible = true;
+                // Hide this button: cant add more if we added 4th
+                document.getElementById('actorAdd').style.display = "none";
+                // add the form
+                document.querySelector('.actor4').style.display = "block";
+                break;
+        }
+        numActorsVisible += 1;
+    }
+
+    document.getElementById('actorDel').style.display = ""; // del must be visible if we just added one
+
+})
+
 // --------------- Get selected input type for calculate command ----
 
 document.inputObjectForm.addEventListener('input', () => {
@@ -202,16 +372,14 @@ function displayObjectInput() {
     document.getElementById('inputEulerMenu').style.display = "none";
     document.getElementById('inputQuaternionMenu').style.display = "none";
     document.getElementById('inputRotationMenu').style.display = "none";
-    document.getElementById('inputLinVelMenu').style.display = "none";
-    document.getElementById('inputAngVelMenu').style.display = "none";
+    document.getElementById('inputTwistMenu').style.display = "none";
     var form = new FormData(document.inputObjectForm);
     var selectedType = form.get("inputObjectType");
     if (selectedType == "Position") document.getElementById('inputPosMenu').style.display = "";
     if (selectedType == "Euler") document.getElementById('inputEulerMenu').style.display = "";
     if (selectedType == "Quaternion") document.getElementById('inputQuaternionMenu').style.display = "";
     if (selectedType == "RotationMatrix") document.getElementById('inputRotationMenu').style.display = "";
-    if (selectedType == "LinearVelocity") document.getElementById('inputLinVelMenu').style.display = "";
-    if (selectedType == "AngularVelocity") document.getElementById('inputAngVelMenu').style.display = "";
+    if (selectedType == "Twist") document.getElementById('inputTwistMenu').style.display = "";
 }
 displayObjectInput(); // display for starting selection
 
@@ -222,9 +390,9 @@ function getSelectedActors() {
     const formData2 = new FormData(document.selectedActor2);
     const selectedActor2Name = formData2.get("selectOptions2");
     var out = [];
-    for (var i = 0; i < numActors; i++)
+    for (var i = 0; i < numActorsVisible; i++)
         if (selectedActor1Name == actorNames[i]) out[0] = actors[i];
-    for (var i = 0; i < numActors; i++)
+    for (var i = 0; i < numActorsVisible; i++)
         if (selectedActor2Name == actorNames[i]) out[1] = actors[i];
 
     return out;
@@ -273,8 +441,12 @@ calculateBtn.addEventListener('click', () => {
     // outputString += "From " + getSelectedActorNames()[0] + " to " + getSelectedActorNames()[1] + "\n";
     var selectedActor1 = getSelectedActors()[0];
     var selectedActor2 = getSelectedActors()[1];
-    var T_1 = selectedActor1.matrixWorld;
-    var T_2 = selectedActor2.matrixWorld;
+    // need deep copies since if the selected actor is the same then T_1 and T_2 are refs to the same
+    var T_1 = new THREE.Matrix4();
+    T_1.copy(selectedActor1.matrixWorld);
+    var T_2 = new THREE.Matrix4();
+    T_2.copy(selectedActor2.matrixWorld);
+
     // outputString += "Calculations to go from\n" +
     //     printTMat(T_1) + "\nto\n" + printTMat(T_2) + "\n";
 
@@ -282,12 +454,17 @@ calculateBtn.addEventListener('click', () => {
     // T_1f2 = T_2fw.inverse() * T_1fw
     var T_1f2 = new THREE.Matrix4();
     T_1f2 = T_2.invert().multiply(T_1);
-    var t_1f2 = new THREE.Vector3();
+    var t = new THREE.Vector3();
     var q_1f2 = new THREE.Quaternion();
     var scale_1f2 = new THREE.Vector3();
-    T_1f2.decompose(t_1f2, q_1f2, scale_1f2);
-    var R_1f2 = new THREE.Matrix4(); // matrix 4 but only has rot
-    R_1f2.extractRotation(T_1f2);
+    T_1f2.decompose(t, q_1f2, scale_1f2);
+    var t_1f2 = new THREE.Vector4();
+    t_1f2.x = t.x;
+    t_1f2.y = t.y;
+    t_1f2.z = t.z;
+    t_1f2.w = 1; // homogeneous
+    var R_1f2 = new THREE.Matrix3();
+    R_1f2.setFromMatrix4(T_1f2);
     // outputString += "T_1f2 =\n" + printTMat(T_1f2) + "\n";
 
     //What input type are we handling
@@ -305,8 +482,11 @@ calculateBtn.addEventListener('click', () => {
         position.w = 1; // homogenous
         outputString += printVec(position);
 
-        // t_2 = t_1 * T_1f2
-        outputString += printVec(position.applyMatrix4(T_1f2.invert()));
+        // t_2 = T_1f2 * t_1
+        outputString += printVec(position.applyMatrix4(T_1f2));
+
+        // maths used output
+        outputString += "t_2 = T_1f2 * t_1\n";
     }
 
     // Euler angles
@@ -318,6 +498,8 @@ calculateBtn.addEventListener('click', () => {
         euler.x = formData.get("R") * Math.PI / 180;
         euler.y = formData.get("P") * Math.PI / 180;
         euler.z = formData.get("Y") * Math.PI / 180;
+
+        // Print input
         outputString += printEulerDegrees(euler);
 
         // Go via quaternion for maths
@@ -326,11 +508,13 @@ calculateBtn.addEventListener('click', () => {
         var quaternion_2 = quaternion;
         quaternion_2.multiply(q_1f2);
 
-        // output
+        // Print output
         var euler_2 = new THREE.Euler();
         euler_2.setFromQuaternion(quaternion_2);
         outputString += printEulerDegrees(euler_2);
 
+        // maths used output
+        outputString += "Convert to and from quaternion for mathematics\n";
     }
 
     //Quaternion
@@ -342,75 +526,116 @@ calculateBtn.addEventListener('click', () => {
         quaternion.y = formData.get("Qy");
         quaternion.z = formData.get("Qz");
         quaternion.w = formData.get("Qw");
+
+        // Print input
         outputString += printQuat(quaternion);
 
         // q_2 = q_1 * q_1f2
         var quaternion_2 = quaternion;
         quaternion_2.multiply(q_1f2);
 
+        //Print output
         outputString += printQuat(quaternion_2);
+
+        // maths used output
+        outputString += "q_2 = q_1 * q_1f2\n";
     }
 
     // Rotation Matrix
     if (selectedType == "RotationMatrix") {
         const formData = new FormData(document.inputRotationMenu);
 
-        var R = new THREE.Matrix4()
+        var R = new THREE.Matrix3()
         R.set(
-            formData.get("Rot11"), formData.get("Rot12"), formData.get("Rot13"), 0,
-            formData.get("Rot21"), formData.get("Rot22"), formData.get("Rot23"), 0,
-            formData.get("Rot31"), formData.get("Rot32"), formData.get("Rot33"), 0,
-            0, 0, 0, 1
+            formData.get("Rot11"), formData.get("Rot12"), formData.get("Rot13"),
+            formData.get("Rot21"), formData.get("Rot22"), formData.get("Rot23"),
+            formData.get("Rot31"), formData.get("Rot32"), formData.get("Rot33")
         );
+
+        // Print input
         outputString += printRMat(R);
 
         // R_2 = R_1 * R_1f2
         var R_2 = R.multiply(R_1f2);
 
+        // Print ouput
         outputString += printRMat(R_2);
+
+        // maths used output
+        outputString += "R_2 = R_1 * R_1f2\n";
     }
 
-    // Quaternion in 1 becomes what in 2?
-    //var testQuaternion = new THREE.Vector4();
-    //testQuaternion.x = 2; testQuaternion.y = 3; testQuaternion.z = 4;
-    //outputString += printQuat(testQuaternion);
-    //var outputQuaternion = unitQuaternion.applyMatrix4(R_2f1);
-    //var outputQuaternion = testQuaternion.applyMatrix4(R_2f1);
-    //outputString += "Quaternion:\n";
-    //outputString += "q_2 = q_1 * " + printQuat(outputQuaternion)
-
-    //example calc
-    // var t_1 = new THREE.Vector3(10, -4, 2);
-    // var t_2 = t_1.add(position);
-    // document.getElementsByName('output')[0].value =
-    //     "t_2 = t_1 + [" + position.x + "," + position.y + "," + position.z + "]"
-    //     + "\ne.g: [" + t_2.x + "," + t_2.y + "," + t_2.z + "] = ["
-    //     + t_1.x + "," + t_1.y + "," + t_1.z + "] + ["
-    //     + position.x + "," + position.y + "," + position.z + "]";
 
 
+    // Twist
+    if (selectedType == "Twist") {
+        const formData = new FormData(document.inputTwistMenu);
 
-    // console.log(-actor1.position.x + actor2.position.x);
-    // console.log(-actor1.position.y + actor2.position.z);
-    // console.log(-actor1.position.z + actor2.position.z);
-    // console.log("VecIn2 = VecIn1 * (2Pos - 1Pos)");
+        var angVel = new THREE.Vector3();
+        angVel.x = formData.get("Wx");
+        angVel.y = formData.get("Wy");
+        angVel.z = formData.get("Wz");
 
+        var linVel = new THREE.Vector3();
+        linVel.x = formData.get("Vx");
+        linVel.y = formData.get("Vy");
+        linVel.z = formData.get("Vz");
+
+        // print input
+        outputString += printVec(angVel);
+        outputString += printVec(linVel);
+
+        // Maths breakdown
+        // twist = [Wx;Wy;Wz;Vx;Vy;Vz]
+        // adjointT = [R, 0; [t]R, R]
+        // twist_2 = adjointT_2f1 * twist_1
+        // angVel_2 = R_1f2 * angVel_1
+        // linVel_2 = [t_1f2]*R_1f2*angVel_1 + R_1f2 * linVel_1
+
+        // calc lin velocity
+        linVel.applyMatrix3(R_1f2);
+        var t_1f2_skew = new THREE.Matrix3();
+        t_1f2_skew.set(
+            0, -t_1f2.z, t_1f2.y,
+            t_1f2.z, 0, -t_1f2.x,
+            -t_1f2.y, t_1f2.x, 0
+        );
+        linVel.add(angVel.applyMatrix3(t_1f2_skew.multiply(R_1f2)));
+
+        // get the angular velocity again since javascript doesnt allow shallow copying easily
+        angVel.x = formData.get("Wx");
+        angVel.y = formData.get("Wy");
+        angVel.z = formData.get("Wz");
+
+        // calc ang velocity
+        angVel.applyMatrix3(R_1f2);
+
+        // print output
+        outputString += printVec(linVel);
+        outputString += printVec(angVel);
+
+        // maths used output
+        outputString += "twist_2 = [R, 0; [tx]R, R] * twist_1"
+
+    }
 
     document.getElementsByName('output')[0].value = outputString;
 })
 
 // To-Do list:
-// 1. Finish all normal results for all input types
-// 2. Remodel ouput box html/css
-// 3. Print maths used with outputs
-// 4. VALIDATE VALIDATE VALIDATE
-// 2. make extra actors (2,4) optional, e.g click a box to add or delete them
-// 3. visualise the inputs
-// 4. changeable units: e,g mm or metre degrees or radians
-// 5. changeable order for euler "x,y,z"
-// 6. Import CAD models for visualising
-// 7. VALIDATE VALIDATE VALIDATE
-
+// 1. Finish all normal results for all input types DONE
+// 2. Print maths used with outputs DONE
+// 3. make extra actors (2,4) optional, e.g click a box to add or delete them DONE
+// 4. hide/show actors DONE
+// 5. changeable actor names DIFFICULT
+// 5a. show actor axis DONE
+// 6. changeable units: e,g mm or metre degrees or radians
+// 7. changeable order for euler "x,y,z"
+// 8. symbolic maths
+// 9. visualise the inputs
+// 10. Import CAD models for visualising
+// 11. Remodel ouput box html/css
+// 12. VALIDATE VALIDATE VALIDATE: check all against calcs using eigen?
 
 // NOTES: 
 
