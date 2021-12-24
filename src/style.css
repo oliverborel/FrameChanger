@@ -22,7 +22,7 @@ body {
 canvas {
   position: fixed;
   width: 100%;
-  height: 80%;
+  height: 100%;
   display: block;
   background: #f2f2f2;
   background-color: #f2f2f2;
@@ -49,6 +49,20 @@ canvas {
   color: #20207F;
 }
 
+.selectUnits {
+  position: fixed;
+  top: 13%;
+  left: 4%;
+  z-index: 999;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .logo {
   position: fixed;
   top: 0;
@@ -68,48 +82,43 @@ canvas {
   color: var(--primary-color);
 }
 
+.openNav {
+  position: fixed;
+  top: 1em;
+  right: 1em;
+  z-index: 900;
+  cursor: pointer;
+}
+
 .navbar {
-  height: 5%;
-  width: 15%;
+  height: 100%;
+  width: 30%;
   z-index: 999;
   position: fixed;
   right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   background: var(--menus-color);
 }
 
-.navbar li a {
+.navbar a {
   color: white;
   text-decoration: none;
   display: block;
   padding: .5em;
   font-size: 1.3em;
-  text-align: right;
+  text-align: center;
 }
 
-.navbar li a:hover {
-  font-weight: bold;
-}
-
-.navbar inputmenu {
-  display: none;
-}
-
-.navbar calculatemenu {
-  display: none;
-}
-
-.navbar .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  place-content: space-between;
-}
-
-.navbar .inputmenu-open {
-  cursor: pointer;
-}
-
-.navbar .calculatemenu-open {
+.navbar .closeNav {
+  position: relative;
+  top: 1em;
+  left: 1em;
+  z-index: 900;
   cursor: pointer;
 }
 
@@ -123,99 +132,99 @@ ul {
   padding: 0;
 }
 
-inputmenu.menu-btn {
-  display: block;
-}
-
 inputmenu {
-  position: fixed;
-  z-index: 999;
-  width: 15%;
-  right: 0;
-  top: 5%;
-  background: var(--menus-color);
-  height: 85%;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
 }
 
-inputmenu .input {
+inputmenu .actor1, inputmenu .actor2, inputmenu .actor3, inputmenu .actor4 {
+  display: block;
+  text-align: center;
   padding-top: 1em;
 }
 
-inputmenu .input .actor1, inputmenu .input .actor2, inputmenu .input .actor3, inputmenu .input .actor4 {
-  margin: 1em;
-  padding: 1em;
-  display: block;
-}
-
-inputmenu .input .actor1 .actor1Name, inputmenu .input .actor2 .actor1Name, inputmenu .input .actor3 .actor1Name, inputmenu .input .actor4 .actor1Name {
+inputmenu .actor1 .actor1Name, inputmenu .actor2 .actor1Name, inputmenu .actor3 .actor1Name, inputmenu .actor4 .actor1Name {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   text-decoration: none;
   font-weight: bold;
   color: var(--actor1-color);
   font-size: 0.8em;
-  position: relative;
-  top: -8px;
-  padding: none;
 }
 
-inputmenu .input .actor1 .actor2Name, inputmenu .input .actor2 .actor2Name, inputmenu .input .actor3 .actor2Name, inputmenu .input .actor4 .actor2Name {
+inputmenu .actor1 .actor2Name, inputmenu .actor2 .actor2Name, inputmenu .actor3 .actor2Name, inputmenu .actor4 .actor2Name {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   text-decoration: none;
   font-weight: bold;
   color: var(--actor2-color);
   font-size: 0.8em;
-  position: relative;
-  top: -8px;
-  padding: none;
 }
 
-inputmenu .input .actor1 .actor3Name, inputmenu .input .actor2 .actor3Name, inputmenu .input .actor3 .actor3Name, inputmenu .input .actor4 .actor3Name {
+inputmenu .actor1 .actor3Name, inputmenu .actor2 .actor3Name, inputmenu .actor3 .actor3Name, inputmenu .actor4 .actor3Name {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   text-decoration: none;
   font-weight: bold;
   color: var(--actor3-color);
   font-size: 0.8em;
-  position: relative;
-  top: -8px;
-  padding: none;
 }
 
-inputmenu .input .actor1 .actor4Name, inputmenu .input .actor2 .actor4Name, inputmenu .input .actor3 .actor4Name, inputmenu .input .actor4 .actor4Name {
+inputmenu .actor1 .actor4Name, inputmenu .actor2 .actor4Name, inputmenu .actor3 .actor4Name, inputmenu .actor4 .actor4Name {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   text-decoration: none;
   font-weight: bold;
   color: var(--actor4-color);
   font-size: 0.8em;
-  position: relative;
-  top: -8px;
-  padding: none;
 }
 
-inputmenu .input .actor3, inputmenu .input .actor4 {
+inputmenu .actor3, inputmenu .actor4 {
   display: none;
 }
 
-.inputmenu-exit {
-  float: right;
-  margin: .5em;
-  cursor: pointer;
-}
-
-calculatemenu.menu-btn {
-  display: block;
+inputmenu .addOrDel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 2em;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 calculatemenu {
-  position: fixed;
-  z-index: 900;
-  width: 15%;
-  right: 0;
-  top: 5%;
-  background: var(--menus-color);
-  height: 85%;
-  padding-top: 1em;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
   text-align: center;
 }
 
 calculatemenu .selectObjectTypeMenu {
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -229,19 +238,14 @@ calculatemenu .selectObjectTypeMenu {
 }
 
 calculatemenu .inputObjectTypeMenu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  padding-top: 2em;
+  padding-bottom: 2em;
+  display: inline-block;
 }
 
 calculatemenu .selectMenu {
-  padding-top: 1em;
+  padding-top: 2em;
+  padding-bottom: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -252,30 +256,5 @@ calculatemenu .selectMenu {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: start;
-}
-
-calculatemenu a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: .5em;
-  font-size: 1.3em;
-  text-align: center;
-}
-
-calculatemenu a:hover {
-  font-weight: bold;
-}
-
-.calculatemenu-exit {
-  float: right;
-  margin: .5em;
-  cursor: pointer;
-}
-
-output {
-  position: fixed;
-  bottom: 0;
-  left: 0;
 }
 /*# sourceMappingURL=style.css.map */

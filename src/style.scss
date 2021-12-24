@@ -22,7 +22,7 @@ body {
 canvas { 
     position: fixed;
     width: 100%; 
-    height: 80%; 
+    height: 100%; 
     display: block;
     background: #f2f2f2; 
     background-color: #f2f2f2;
@@ -46,6 +46,15 @@ canvas {
     }
 }
 
+.selectUnits {
+    position: fixed;
+    top: 13%;
+    left: 4%;
+    z-index: 999;
+    display: inline-flex;
+    flex-direction: column;
+}
+
 .logo {
     position: fixed;
     top: 0;
@@ -64,48 +73,38 @@ canvas {
     }
 }
 
+.openNav {
+    position: fixed;
+    top: 1em;
+    right: 1em;
+    z-index: 900;
+    cursor: pointer;
+}
+
 .navbar {
-    height: 5%;
-    width: 15%;
+    height: 100%;
+    width: 30%;
     z-index: 999;
     position: fixed;
     right: 0;
-    li {
+    display: flex;
+    align-items: flex-start;
+        
         a {
             color: white;
             text-decoration: none;
             display: block;
             padding: .5em;
             font-size: 1.3em;
-            text-align: right;
-        
-            &:hover {
-                font-weight: bold;
-            }
+            text-align: center;
         }
-    }
-    
     background: var(--menus-color);
 
-
-    inputmenu {
-        display: none;
-    }
-
-    calculatemenu {
-        display: none;
-    }
-    
-    .container {
-        display: flex;
-        place-content: space-between;
-    }
-
-    .inputmenu-open {
-        cursor: pointer;
-    }
-
-    .calculatemenu-open {
+    .closeNav {
+        position: relative;
+        top: 1em;
+        left: 1em;
+        z-index: 900;
         cursor: pointer;
     }
 
@@ -121,139 +120,83 @@ ul {
     padding: 0;
 }
 
-inputmenu.menu-btn {
-    display: block;
-}
-
 inputmenu {
-    position: fixed;
-    z-index: 999;
-    width: 15%;
-    right: 0;
-    top: 5%;
-    background: var(--menus-color);
-    height: 85%;
-    //padding: 1em;
-    
-    .input {
-
-    //top: 10em;
-    padding-top: 1em;
-
+    flex-basis: 50%;
     .actor1, .actor2, .actor3, .actor4 {
-        margin: 1em;
-        padding: 1em;
         display: block;
-        
+        text-align: center;
+        padding-top: 1em;
+
         .actor1Name {
+            display: inline-flex;
+            align-items: baseline;
             text-decoration: none;
             font-weight: bold;
             color: var(--actor1-color);
             font-size: 0.8em;
-            position: relative;
-            top: -8px;
-            padding: none;
         }
         .actor2Name {
+            display: inline-flex;
+            align-items: baseline;
             text-decoration: none;
             font-weight: bold;
             color: var(--actor2-color);
             font-size: 0.8em;
-            position: relative;
-            top: -8px;
-            padding: none;
         }
         .actor3Name {
+            display: inline-flex;
+            align-items: baseline;
             text-decoration: none;
             font-weight: bold;
             color: var(--actor3-color);
             font-size: 0.8em;
-            position: relative;
-            top: -8px;
-            padding: none;
         }
         .actor4Name {
+            display: inline-flex;
+            align-items: baseline;
             text-decoration: none;
             font-weight: bold;
             color: var(--actor4-color);
             font-size: 0.8em;
-            position: relative;
-            top: -8px;
-            padding: none;
         }
-
     }
 
     .actor3, .actor4 {
         display: none;
     }
-}
 
-}
-
-.inputmenu-exit {
-    float: right;
-    margin: .5em;
-    cursor: pointer;
-}
-
-calculatemenu.menu-btn {
-    display: block;
+    .addOrDel {
+        display: flex;
+        padding-top: 2em;
+        flex-direction: row;
+        align-items: baseline;
+        justify-content: center;
+    }
 }
 
 calculatemenu {
-    position: fixed;
-    z-index: 900;
-    width: 15%;
-    right: 0;
-    top: 5%;
-    background: var(--menus-color);
-    height: 85%;
-    padding-top: 1em;
+    flex-basis: 50%;
     text-align: center;
+
     .selectObjectTypeMenu {
-        padding-top: 1em;
-        padding-bottom: 1em;
+        padding-top: 2em;
+        padding-bottom: 2em;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: start;
     }
     .inputObjectTypeMenu {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        padding-top: 2em;
+        padding-bottom: 2em;
+        display: inline-block;
     }
     .selectMenu {
-        padding-top: 1em;
+        padding-top: 2em;
+        padding-bottom: 2em;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: start;
     }
-    a {
-        color: white;
-        text-decoration: none;
-        display: block;
-        padding: .5em;
-        font-size: 1.3em;
-        text-align: center;
-    
-        &:hover {
-            font-weight: bold;
-        }
-    }
-}
-
-.calculatemenu-exit {
-    float: right;
-    margin: .5em;
-    cursor: pointer;
-}
-
-output {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-
 }

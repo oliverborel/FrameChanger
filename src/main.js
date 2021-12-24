@@ -3,7 +3,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
 import { createRefFrame } from './referenceFrame'
-
+import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js'
 
 // -------------- Setup ThreeJS main canvas ---------------
 THREE.Object3D.DefaultUp = new THREE.Vector3(0, 0, 1); // make z up in all three objects
@@ -223,16 +223,29 @@ actor4HideBtn.addEventListener('input', () => {
     }
 })
 
-
+// ---------------------- Get curren Euler order -------------------
+function getEulerOrder() {
+    return (new FormData(document.selectUnits)).get("eulerOrder");
+}
 // ---------------------- Set actors from form data
 function setActor(actor, formData) {
     actor.position.x = formData.get("position.x");
     actor.position.y = formData.get("position.y");
     actor.position.z = formData.get("position.z");
     //need to add selection for euler order!
-    actor.rotation.x = formData.get("rotation.x") * Math.PI / 180;
-    actor.rotation.y = formData.get("rotation.y") * Math.PI / 180;
-    actor.rotation.z = formData.get("rotation.z") * Math.PI / 180;
+    const unitType = new FormData(document.selectUnits).get("units");
+    if (unitType == "degrees") {
+        actor.rotation.order = getEulerOrder();
+        actor.rotation.x = formData.get("rotation.x") * Math.PI / 180;
+        actor.rotation.y = formData.get("rotation.y") * Math.PI / 180;
+        actor.rotation.z = formData.get("rotation.z") * Math.PI / 180;
+    }
+    else {
+        actor.rotation.order = getEulerOrder();
+        actor.rotation.x = formData.get("rotation.x");
+        actor.rotation.y = formData.get("rotation.y");
+        actor.rotation.z = formData.get("rotation.z");
+    }
     //console.log("setActor");
 }
 
@@ -494,10 +507,20 @@ calculateBtn.addEventListener('click', () => {
         const formData = new FormData(document.inputEulerMenu);
 
         // need to add xyz select order!
+        const unitType = new FormData(document.selectUnits).get("units");
         var euler = new THREE.Euler()
-        euler.x = formData.get("R") * Math.PI / 180;
-        euler.y = formData.get("P") * Math.PI / 180;
-        euler.z = formData.get("Y") * Math.PI / 180;
+        if (unitType == "degrees") {
+            euler.order = getEulerOrder();
+            euler.x = formData.get("R") * Math.PI / 180;
+            euler.y = formData.get("P") * Math.PI / 180;
+            euler.z = formData.get("Y") * Math.PI / 180;
+        }
+        else {
+            euler.order = getEulerOrder();
+            euler.x = formData.get("R");
+            euler.y = formData.get("P");
+            euler.z = formData.get("Y");
+        }
 
         // Print input
         outputString += printEulerDegrees(euler);
@@ -623,19 +646,13 @@ calculateBtn.addEventListener('click', () => {
 })
 
 // To-Do list:
-// 1. Finish all normal results for all input types DONE
-// 2. Print maths used with outputs DONE
-// 3. make extra actors (2,4) optional, e.g click a box to add or delete them DONE
-// 4. hide/show actors DONE
 // 5. changeable actor names DIFFICULT
-// 5a. show actor axis DONE
-// 6. changeable units: e,g mm or metre degrees or radians
-// 7. changeable order for euler "x,y,z"
 // 8. symbolic maths
 // 9. visualise the inputs
-// 10. Import CAD models for visualising
-// 11. Remodel ouput box html/css
-// 12. VALIDATE VALIDATE VALIDATE: check all against calcs using eigen?
+// 10. Import CAD models for visualising DOESNT SEEM POSSIBLE TO LOAD FILE AT RUNTIME WITH WEBPACK
+// 12. Help section / walkthrough
+// 13. Maths page
+// 14. VALIDATE VALIDATE VALIDATE: check all against calcs using eigen?
 
 // NOTES: 
 
