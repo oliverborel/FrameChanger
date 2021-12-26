@@ -63,6 +63,61 @@ canvas {
           flex-direction: column;
 }
 
+.helpBtn {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 999;
+}
+
+/* Help Popup background */
+.helpPopup {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Help Popup content */
+.helpPopup-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+  /* Could be more or less, depending on screen size */
+  /* The Close Button */
+}
+
+.helpPopup-content .close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.helpPopup-content .close:hover,
+.helpPopup-content .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .logo {
   position: fixed;
   top: 0;
@@ -153,7 +208,7 @@ inputmenu .actor1 .actor1Name, inputmenu .actor2 .actor1Name, inputmenu .actor3 
   text-decoration: none;
   font-weight: bold;
   color: var(--actor1-color);
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 inputmenu .actor1 .actor2Name, inputmenu .actor2 .actor2Name, inputmenu .actor3 .actor2Name, inputmenu .actor4 .actor2Name {
@@ -166,7 +221,7 @@ inputmenu .actor1 .actor2Name, inputmenu .actor2 .actor2Name, inputmenu .actor3 
   text-decoration: none;
   font-weight: bold;
   color: var(--actor2-color);
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 inputmenu .actor1 .actor3Name, inputmenu .actor2 .actor3Name, inputmenu .actor3 .actor3Name, inputmenu .actor4 .actor3Name {
@@ -179,7 +234,7 @@ inputmenu .actor1 .actor3Name, inputmenu .actor2 .actor3Name, inputmenu .actor3 
   text-decoration: none;
   font-weight: bold;
   color: var(--actor3-color);
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 inputmenu .actor1 .actor4Name, inputmenu .actor2 .actor4Name, inputmenu .actor3 .actor4Name, inputmenu .actor4 .actor4Name {
@@ -192,7 +247,7 @@ inputmenu .actor1 .actor4Name, inputmenu .actor2 .actor4Name, inputmenu .actor3 
   text-decoration: none;
   font-weight: bold;
   color: var(--actor4-color);
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
 inputmenu .actor3, inputmenu .actor4 {
@@ -243,8 +298,20 @@ calculatemenu .inputObjectTypeMenu {
   display: inline-block;
 }
 
-calculatemenu .selectMenu {
+calculatemenu .fromToText {
+  width: 100%;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding-top: 2em;
+  padding-bottom: 0em;
+}
+
+calculatemenu .selectMenu {
+  padding-top: 0em;
   padding-bottom: 2em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -256,5 +323,26 @@ calculatemenu .selectMenu {
       -ms-flex-pack: center;
           justify-content: center;
   text-align: start;
+}
+
+calculatemenu .calculateButton {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  padding-bottom: 2em;
+}
+
+calculatemenu .calculateButton a {
+  border: 3px black solid;
+  border-radius: 15px;
+  color: black;
+  -webkit-text-decoration: bold;
+          text-decoration: bold;
 }
 /*# sourceMappingURL=style.css.map */

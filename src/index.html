@@ -17,7 +17,7 @@
         <inputmenu>
             <a> Frames </a>
             <div class="actor1">
-                <a class="actor1Name">Actor 1</a>
+                <a class="actor1Name">Frame 1</a>
                 <input type="checkbox" id="actor1Hide">
                 <label for="actor1Hide"> Hide</label><br>
                 <!-- <div class="input"> -->
@@ -32,7 +32,7 @@
                 <!-- </div> -->
             </div>
             <div class="actor2">
-                <a class="actor2Name">Actor 2</a>
+                <a class="actor2Name">Frame 2</a>
                 <input type="checkbox" id="actor2Hide">
                 <label for="actor2Hide"> Hide</label><br>
                 <!-- <div class="input"> -->
@@ -48,7 +48,7 @@
             </div>
 
             <div class="actor3">
-                <a class="actor3Name">Actor 3</a>
+                <a class="actor3Name">Frame 3</a>
                 <input type="checkbox" id="actor3Hide">
                 <label for="actor3Hide"> Hide</label><br>
                 <!-- <div class="input"> -->
@@ -64,7 +64,7 @@
             </div>
 
             <div class="actor4">
-                <a class="actor4Name">Actor 4</a>
+                <a class="actor4Name">Frame 4</a>
                 <input type="checkbox" id="actor4Hide">
                 <label for="actor4Hide"> Hide</label><br>
                 <!-- <div class="input"> -->
@@ -85,7 +85,7 @@
         </inputmenu>
 
         <calculatemenu>
-            <a> Calculate </a>
+            <a> Convert </a>
             <div class="selectObjectTypeMenu">
                 <form name="inputObjectForm" action="">
                     <input type="radio" id="pos" name="inputObjectType" value="Position">
@@ -142,38 +142,44 @@
                     <input type="text" name="Vz" id="inVz" placeholder="Vz" size="3">
                 </form>
             </div>
+            <div class="fromToText">
+                <a>From</a>
+                <a>To</a>
+            </div>
             <div class="selectMenu">
                 <!-- <li id="calculate-exit" class="calculatemenu-exit"><a href="#">Close</a></li> -->
                 <form name="selectedActor1" action="">
                     <input type="radio" id="sel11" name="selectOptions1" value="Actor1">
-                    <label for="sel11" id="sel11Name">Actor1</label><br>
+                    <label for="sel11" id="sel11Name">Frame1</label><br>
 
                     <input type="radio" id="sel12" name="selectOptions1" value="Actor2">
-                    <label for="sel12" id="sel12Name">Actor2</label><br>
+                    <label for="sel12" id="sel12Name">Frame2</label><br>
 
                     <input type="radio" id="sel13" name="selectOptions1" value="Actor3">
-                    <label for="sel13" id="sel13Name">Actor3</label><br>
+                    <label for="sel13" id="sel13Name">Frame3</label><br>
 
                     <input type="radio" id="sel14" name="selectOptions1" value="Actor4">
-                    <label for="sel14" id="sel14Name">Actor4</label><br>
+                    <label for="sel14" id="sel14Name">Frame4</label><br>
                 </form>
 
                 <form name="selectedActor2" action="">
                     <input type="radio" id="sel21" name="selectOptions2" value="Actor1">
-                    <label for="sel21" id="sel21Name">Actor1</label><br>
+                    <label for="sel21" id="sel21Name">Frame1</label><br>
 
                     <input type="radio" id="sel22" name="selectOptions2" value="Actor2">
-                    <label for="sel22" id="sel22Name">Actor2</label><br>
+                    <label for="sel22" id="sel22Name">Frame2</label><br>
 
                     <input type="radio" id="sel23" name="selectOptions2" value="Actor3">
-                    <label for="sel23" id="sel23Name">Actor3</label><br>
+                    <label for="sel23" id="sel23Name">Frame3</label><br>
 
                     <input type="radio" id="sel24" name="selectOptions2" value="Actor4">
-                    <label for="sel24" id="sel24Name">Actor4</label><br>
+                    <label for="sel24" id="sel24Name">Frame4</label><br>
                 </form>
             </div>
 
-            <a id="calculate" class="calculate" href="#">Calculate</a>
+            <div class="calculateButton">
+                <a id="calculate" class="calculate" href="#">Calculate</a>
+            </div>
 
             <div class="outputBox">
                 <textarea name="output" id="output" cols="30" rows="12" placeholder="Output..."></textarea>
@@ -207,6 +213,28 @@
             </select>
         </form>
 
+        <!-- Popup help tutorial -->
+        <button id="helpBtn" class="helpBtn">Help</button>
+
+        <!-- The Modal -->
+        <div id="helpPopup" class="helpPopup">
+
+            <!-- Modal content -->
+            <div class="helpPopup-content">
+                <span class="closeHelp">&times;</span>
+                <p>1. Enter the position and angles of your
+                    reference frames with respect to world under the frames column.</p>
+                <p>2. Enter the value you wish to convert as well as the to and from frames.</p>
+                <p>3. Click on the Calculate button to see the result.</p>
+                <p>For example, if you have a GPS sensor in frame 1 (GPS frame) which has returned a position
+                    estimate and you want to know the position of your robot in frame 2 (Baselink frame):</p>
+                <p>Select position, enter the position estimate given by the GPS, under "from" select frame 1, under
+                    "to" select frame 2. Click calculate.</p>
+                </p>
+            </div>
+
+        </div>
+
         <canvas>
         </canvas>
 
@@ -224,6 +252,34 @@
         ExitBtn.addEventListener('click', () => {
             document.getElementById('navbar').style.display = "none";
         })
+
+        // Get the modal
+        var modal = document.getElementById("helpPopup");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("helpBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("closeHelp")[0];
+
+        // When the user clicks on the button, open the modal
+        btn.onclick = function () {
+            console.log("clicked");
+            modal.style.display = "block";
+            document.getElementById('navbar').style.display = ""; // open the navbar too
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
 
     </script>
 </body>

@@ -55,6 +55,52 @@ canvas {
     flex-direction: column;
 }
 
+.helpBtn {
+    position: fixed;
+    top: 1em;
+    left: 1em;
+    z-index: 999;
+}
+
+ /* Help Popup background */
+ .helpPopup {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Help Popup content */
+  .helpPopup-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 20%; /* Could be more or less, depending on screen size */
+    /* The Close Button */
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    } 
+  }
+  
+
+  
 .logo {
     position: fixed;
     top: 0;
@@ -133,7 +179,7 @@ inputmenu {
             text-decoration: none;
             font-weight: bold;
             color: var(--actor1-color);
-            font-size: 0.8em;
+            font-size: 1em;
         }
         .actor2Name {
             display: inline-flex;
@@ -141,7 +187,7 @@ inputmenu {
             text-decoration: none;
             font-weight: bold;
             color: var(--actor2-color);
-            font-size: 0.8em;
+            font-size: 1em;
         }
         .actor3Name {
             display: inline-flex;
@@ -149,7 +195,7 @@ inputmenu {
             text-decoration: none;
             font-weight: bold;
             color: var(--actor3-color);
-            font-size: 0.8em;
+            font-size: 1em;
         }
         .actor4Name {
             display: inline-flex;
@@ -157,7 +203,7 @@ inputmenu {
             text-decoration: none;
             font-weight: bold;
             color: var(--actor4-color);
-            font-size: 0.8em;
+            font-size: 1em;
         }
     }
 
@@ -191,12 +237,31 @@ calculatemenu {
         padding-bottom: 2em;
         display: inline-block;
     }
-    .selectMenu {
+    .fromToText {
+        width: 100%;
+        display: inline-flex;
+        justify-content: center;
         padding-top: 2em;
+        padding-bottom: 0em;
+    }
+    .selectMenu {
+        padding-top: 0em;
         padding-bottom: 2em;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: start;
+    }
+    .calculateButton {
+        display: inline-flex;
+        justify-content: center;
+        width: min-content;
+        a {
+            border: 3px black solid;
+            border-radius: 15px;
+            color: black;
+            text-decoration: bold;
+        }
+        padding-bottom: 2em;
     }
 }
