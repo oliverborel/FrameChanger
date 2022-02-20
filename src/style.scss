@@ -32,7 +32,7 @@ canvas {
     position: fixed;
     top: 5.5%;
     left: 8.5%;
-    z-index: 999;
+    z-index: 900;
     color: black;
     font-size: 0.8em;
     .redAxis {
@@ -50,7 +50,7 @@ canvas {
     position: fixed;
     top: 13%;
     left: 4%;
-    z-index: 999;
+    z-index: 900;
     display: inline-flex;
     flex-direction: column;
 }
@@ -59,14 +59,14 @@ canvas {
     position: fixed;
     left: 1%;
     bottom: 1%;
-    z-index: 999;
+    z-index: 900;
     font-size: 0.8em;
 }
 .helpBtn {
     position: fixed;
     top: 1%;
     left: 1%;
-    z-index: 999;
+    z-index: 900;
 }
 
  /* Help Popup background */
@@ -110,7 +110,7 @@ canvas {
     position: fixed;
     top: 0;
     left: 50%;
-    z-index: 999;
+    z-index: 900;
     transform: translate(-50%, 0);
     text-decoration: none;
     font-weight: bold;
@@ -128,13 +128,13 @@ canvas {
     position: fixed;
     top: 1em;
     right: 1em;
-    z-index: 900;
+    z-index: 999;
     cursor: pointer;
 }
 
 .navbar {
     height: 100%;
-    width: 30%;
+    width: 550px;
     z-index: 999;
     position: fixed;
     right: 0;
@@ -155,7 +155,7 @@ canvas {
         position: relative;
         top: 1em;
         left: 1em;
-        z-index: 900;
+        z-index: 999;
         cursor: pointer;
     }
 
@@ -268,5 +268,43 @@ calculatemenu {
             text-decoration: bold;
         }
         padding-bottom: 2em;
+    }
+}
+
+@media only screen and (max-width: 800px)
+{
+    body {
+        font-size: 85%;
+      }
+    .navbar{
+        width: 100%;
+    }
+    
+    input {
+        width: 50%;
+        height: 1em;
+        }
+    textarea {
+        width: 50%;
+        }
+    input[type=radio] {
+        width: 10%;
+    }
+    input[type=checkbox] {
+        width: 10%;
+    }
+    inputmenu {
+        .actor1, .actor2, .actor3, .actor4 {
+            padding-top: 0em;
+        }
+        .addOrDel {
+            padding-top: 0em;
+        }
+    }
+    calculatemenu {
+        .selectObjectTypeMenu, .inputObjectTypeMenu, .fromToText, .selectMenu, .calculateButton {
+            padding-top: 0em;
+            padding-bottom: 0em;
+        }
     }
 }

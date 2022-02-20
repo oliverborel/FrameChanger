@@ -650,13 +650,13 @@ calculateBtn.addEventListener('click', () => {
 })
 
 // To-Do list:
-// 1. Pretty print output
-// 5. changeable actor names DIFFICULT
-// 8. symbolic maths
-// 9. visualise the inputs
-// 10. Import CAD models for visualising DOESNT SEEM POSSIBLE TO LOAD FILE AT RUNTIME WITH WEBPACK
-// 13. Maths page
-// 14. VALIDATE VALIDATE VALIDATE: check all against calcs using eigen?
+// Pretty print output
+// changeable actor names DIFFICULT
+// symbolic maths
+// visualise the inputs
+// Import CAD models for visualising DOESNT SEEM POSSIBLE TO LOAD FILE AT RUNTIME WITH WEBPACK
+// Maths page
+// VALIDATE VALIDATE VALIDATE: check all against calcs using eigen?
 
 // NOTES: 
 
